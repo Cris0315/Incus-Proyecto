@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Reservas App</title>
+    <!-- Pico CSS para un diseño minimalista sin esfuerzo -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <style>
+        body { padding-top: 2rem; }
+        .container { max-width: 800px; }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <nav>
+            <ul>
+                <li><strong><a href="{{ url_for('index') }}">App de Reservas</a></strong></li>
+            </ul>
+            <ul>
+                {% if current_user.is_authenticated %}
+                    <li>Hola, {{ current_user.username }}</li>
+                    <li><a href="{{ url_for('logout') }}" role="button" class="secondary">Salir</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}">Ingresar</a></li>
+                    <li><a href="{{ url_for('registro') }}" role="button">Registrarse</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <article style="background-color: var(--pico-del-color); color: white; padding: 1rem; margin-bottom: 2rem;">
+                        {{ message }}
+                    </article>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

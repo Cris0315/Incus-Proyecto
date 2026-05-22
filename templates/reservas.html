@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="grid">
+    <!-- Formulario -->
+    <div>
+        <article>
+            <header><h3>Nueva Reserva</h3></header>
+            <form method="POST">
+                <label>Nombre <input type="text" name="nombre" required></label>
+                <label>Teléfono <input type="tel" name="telefono" required></label>
+                <label>Correo <input type="email" name="correo" required></label>
+                <div class="grid">
+                    <label>Día <input type="date" name="dia" required></label>
+                    <label>Hora <input type="time" name="hora" required></label>
+                </div>
+                <button type="submit">Guardar Reserva</button>
+            </form>
+        </article>
+    </div>
+
+    <!-- Lista de Reservas -->
+    <div>
+        <article>
+            <header><h3>Mis Reservas</h3></header>
+            {% if reservas %}
+                <table class="striped">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for r in reservas %}
+                        <tr>
+                            <td>{{ r.nombre }}</td>
+                            <td>{{ r.dia.strftime('%Y-%m-%d') }}</td>
+                            <td>{{ r.hora.strftime('%H:%M') }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>No tienes reservas registradas.</p>
+            {% endif %}
+        </article>
+    </div>
+</div>
+{% endblock %}
