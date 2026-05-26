@@ -1,4 +1,3 @@
-````markdown
 # README: App de Reservas - Sistemas Distribuidos
 
 Este repositorio contiene la configuración, automatización y despliegue de la **App de Reservas**, un proyecto basado en una arquitectura distribuida sobre contenedores Incus desplegados en Google Cloud Platform.
@@ -30,9 +29,9 @@ La aplicación utiliza una arquitectura distribuida donde cada servicio se ejecu
 
 La comunicación interna entre contenedores se realiza mediante una red privada administrada por Incus sobre la subred:
 
-```text
+```
 10.10.0.0/24
-````
+``` 
 
 Inicialmente se contempló el uso de OVN/Open vSwitch; sin embargo, debido a limitaciones del entorno de virtualización, se implementó una red bridge administrada directamente por Incus manteniendo el aislamiento lógico entre servicios.
 
